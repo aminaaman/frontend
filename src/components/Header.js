@@ -11,8 +11,8 @@ class Header extends Component {
                     <Navbar.Brand href="/">
                         <img
                             src={logo}
-                            height="30"
-                            width="30"
+                            height="50"
+                            width="50"
                             className="d-inline-block align-top"
                             alt="Logo"
                         />
@@ -28,9 +28,6 @@ class Header extends Component {
                             <Nav.Link href="/login">Login/Register</Nav.Link>
                         </Nav>                     
 
-
-
-                        
                     </Navbar.Collapse>
 
                 </Container>
