@@ -6,7 +6,7 @@ class Footer extends Component {
     render() {
         return (
             <>
-            <Nav class="fixed-bottom navbar-dark bg-dark" >
+            <Nav className="fixed-bottom navbar-dark bg-dark" >
             <br></br>
             <Container>
                 <Row 

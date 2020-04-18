@@ -6,14 +6,9 @@ import kbtu from '../images/kbtu.jpg'
 class Home extends Component {
     render() {
         return (
-            <Container style={{
-                position: 'relative',
-                width: '900px',
-                height: '300px',
-                top: '170px'
-            }}>
+            <Container>
             <img 
-                className="d-block w-100"
+                className="d-block w-75 ml-auto mr-auto mt-5"
                 src={ kbtu }
                 alt="KBTU"
             />
