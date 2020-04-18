@@ -7,11 +7,10 @@ class Home extends Component {
     render() {
         return (
             <Container style={{
-                position: 'absolute',
+                position: 'relative',
                 width: '900px',
                 height: '300px',
-                left: '250px',
-                top: '120px'
+                top: '170px'
             }}>
             <img 
                 className="d-block w-100"

@@ -10,6 +10,10 @@ class About extends Component {
                 <div>
                     <br></br>
                     <br></br>
+                    <br></br>
+                    <br></br>
+                    <br></br>
+                    <br></br>
                     <h4>Why do we use it?</h4>
                     <br></br>
                     <p>
@@ -29,8 +33,11 @@ class About extends Component {
                     position: 'absolute',
                     width: '803.25px',
                     height: '450px',
-                    left: '414px',
-                    top: '80px'
+                    left: '700px',
+                    top: '180px'
+                    
+
+                   
                 }}>
                     <img
                       className="d-block w-100"
