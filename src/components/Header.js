@@ -2,10 +2,10 @@ import React, { Component } from 'react'
 import {Navbar, Container, Nav} from 'react-bootstrap'
 import logo from '../images/logo.png'
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import Home from '../pages/Home';
-import About from '../pages/About';
-import Blog from '../pages/Blog';
-import Login from '../pages/Login';
+import Home from '../containers/Home';
+import About from '../containers/About';
+import Blog from '../containers/Blog';
+import Login from '../containers/Login';
 
 class Header extends Component {
     render() {
@@ -29,9 +29,22 @@ class Header extends Component {
                             <Nav.Link href="/about">About us</Nav.Link>
                             <Nav.Link href="/blog">Blog</Nav.Link>
                         </Nav>
-                        <Nav className="mr-lg-2">
-                            <Nav.Link href="/login">Login/Register</Nav.Link>
-                        </Nav>                     
+
+                        {
+                            this.props.isAuthenticated ?
+
+                            <Nav className="mr-lg-2" onClick={this.props.logout}>
+                              Logout
+                            </Nav> 
+                            
+                            :
+
+                            <Nav className="mr-lg-2">
+                                <Nav.Link href="/login">Login</Nav.Link>
+                            </Nav>   
+
+                        }
+                   
 
                     </Navbar.Collapse>
 
