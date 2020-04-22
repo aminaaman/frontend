@@ -40,6 +40,7 @@ export const checkAuthTimeout = expirationTime => {
 export const authLogin = (username, password) => {
     return dispatch => {
         dispatch(authStart());
+
         axios.post('https://diploma.zharaskhan.com/api/login/', {
             username: username,
             password: password
