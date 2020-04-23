@@ -8,7 +8,7 @@ class Footer extends Component {
             <>
             <Nav className="fixed-bottom navbar-dark bg-dark" >
             <br></br>
-            <Container>
+            <Container className="mt-2">
                 <Row 
                     style={{
                         color: "grey",

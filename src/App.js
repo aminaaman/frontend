@@ -18,7 +18,7 @@ class  App extends Component {
     return (
       <div>
         <Header {...this.props} />
-        <Profile/>
+        <Profile {...this.props} />
         <Footer/>
       </div>
     );

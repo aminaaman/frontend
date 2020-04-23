@@ -3,6 +3,7 @@ import axios from 'axios';
 
 import Subjects from '../components/Subject';
 import CustomForm from '../components/Form';
+import { connect } from 'react-redux';
 
 class SubjectList extends React.Component {
 
@@ -10,13 +11,20 @@ class SubjectList extends React.Component {
         subjects: []
     }
 
-    componentDidMount() {
-        axios.get('https://diploma.zharaskhan.com/api/classes/')
-            .then(res => {
-                this.setState({
-                    subjects: res.data
-                });
-            })
+    componentWillReceiveProps(newProps){
+        console.log(newProps);
+        if(newProps.token){
+            axios.defaults.headers = {
+                "Content-Type": "application/json",
+                Authorization: newProps.token
+            }
+            axios.get('https://diploma.zharaskhan.com/api/classes/')
+                .then(res => {
+                    this.setState({
+                        subjects: res.data
+                    });
+                })
+        }
     }
 
     render() {
@@ -33,5 +41,10 @@ class SubjectList extends React.Component {
         )
     }
 }
+const mapStateToProps = state => {
+    return {
+      token: state.token
+    }
+  }
 
-export default SubjectList;
+export default connect(mapStateToProps)(SubjectList);
