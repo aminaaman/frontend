@@ -1,8 +1,10 @@
 import React from 'react';
 import axios from 'axios';
 import { Button, Card } from 'antd';
-import { connect } from 'react-redux';
 import CustomForm from '../components/Form';
+import { Breadcrumb } from 'antd';
+import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 class SubjectDetail extends React.Component {
 
@@ -17,8 +19,8 @@ class SubjectDetail extends React.Component {
                 "Content-Type": "application/json",
                 Authorization: newProps.token
             }
-            const classID = this.props.match.params.classID;
-            axios.get(`https://diploma.zharaskhan.com/api/classes/${classID}/`)
+            const subjectID = this.props.match.params.subjectID;
+            axios.get(`https://diploma.zharaskhan.com/api/classes/${subjectID}/`)
                 .then(res => {
                     this.setState({
                         subject: res.data
@@ -30,12 +32,12 @@ class SubjectDetail extends React.Component {
 
     handleDelete = (event) => {
         if(this.props.token !== null){
-            const classID = this.props.match.params.classID;
+            const subjectID = this.props.match.params.subjectID;
             axios.defaults.headers = {
                 "Content-Type": "application/json",
                 Authorization: this.props.token
             }
-            axios.delete(`https://diploma.zharaskhan.com/api/classes/${classID}/`);
+            axios.delete(`https://diploma.zharaskhan.com/api/classes/${subjectID}/`);
             this.props.history.push('/');
             this.forceUpdate();
         }else{
@@ -43,16 +45,19 @@ class SubjectDetail extends React.Component {
         }
 
     }
-
     render() {
         return (
             <div>
+                 <Breadcrumb style={{ margin: '16px 0' }}>
+                    <Breadcrumb.Item><Link to="/subjects">Home</Link></Breadcrumb.Item>
+                    <Breadcrumb.Item><Link to ="/subjects">List</Link></Breadcrumb.Item>
+                 </Breadcrumb>
                 <Card title={this.state.subject.name}>
                     <p>{this.state.subject.description}</p>
                 </Card>
                 <CustomForm
                     requestType="put"
-                    classID={this.props.match.params.classID}
+                    subjectID={this.props.match.params.subjectID}
                     btnText="Update" />
                 <form onSubmit={this.handleDelete}>
                     <Button type="danger" htmlType="submit">Delete</Button>
@@ -61,9 +66,11 @@ class SubjectDetail extends React.Component {
         )
     }
 }
+
 const mapStateToProps = state => {
     return {
       token: state.token
     }
   }
-export default connect(mapStateToProps)(SubjectDetail);
+
+export default connect (mapStateToProps)(SubjectDetail);

@@ -5,6 +5,7 @@ import kbtu from '../images/kbtu.jpg'
 
 class Home extends Component {
     render() {
+        
         return (
             <Container>
             <img 

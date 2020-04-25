@@ -1,11 +1,8 @@
 import React, { Component } from 'react'
 import {Navbar, Container, Nav} from 'react-bootstrap'
+
+
 import logo from '../images/logo.png'
-import { BrowserRouter as Router, Switch, Route} from "react-router-dom";
-import Home from '../containers/Home';
-import About from '../containers/About';
-import Blog from '../containers/Blog';
-import Login from '../containers/Login';
 import * as actions from '../store/actions/auth'
 import { connect } from 'react-redux';
 
@@ -38,7 +35,8 @@ class Header extends Component {
                             <Nav className="mr-lg-2" onClick={this.props.logout}>
                                 <Nav.Link>Logout</Nav.Link> 
                             </Nav> 
-                            
+
+                        
                             :
 
                             <Nav className="mr-lg-2">
@@ -52,16 +50,6 @@ class Header extends Component {
 
                 </Container>
             </Navbar>
-            <Router>
-                <Switch>
-                    <Route exact path="/" component={Home}/>
-                    <Route exact path="/about" component={About}/>
-                    <Route exact path="/blog" component={Blog}/>
-                    <Route exact path="/login" component={Login}/>
-                    <Route exact path="/logout" component={Home}/>
-
-                </Switch>
-            </Router>
             </>
         )
     }
