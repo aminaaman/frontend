@@ -8,7 +8,7 @@ const MainLayout = (props) => {
     return (
         <Layout className="layout">
             <Header {...props} />
-            <Content style={{ padding: '0 50px' }}>
+            <Content style={{ padding: '0px 50px 100px' }}>
             <div className="site-layout-content">
                 {props.children}
             </div>   
