@@ -17,7 +17,7 @@ class SubjectList extends React.Component {
         if(newProps.token){
             axios.defaults.headers = {
                 "Content-Type": "application/json",
-                Authorization: newProps.token
+                Authorization: "JWT " + newProps.token
             }
             axios.get('https://diploma.zharaskhan.com/api/classes/')
                 .then(res => {

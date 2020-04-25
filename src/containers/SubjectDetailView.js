@@ -17,7 +17,7 @@ class SubjectDetail extends React.Component {
         if(newProps.token){
             axios.defaults.headers = {
                 "Content-Type": "application/json",
-                Authorization: newProps.token
+                Authorization: "JWT " + newProps.token
             }
             const subjectID = this.props.match.params.subjectID;
             axios.get(`https://diploma.zharaskhan.com/api/classes/${subjectID}/`)
@@ -35,10 +35,10 @@ class SubjectDetail extends React.Component {
             const subjectID = this.props.match.params.subjectID;
             axios.defaults.headers = {
                 "Content-Type": "application/json",
-                Authorization: this.props.token
+                Authorization: "JWT " + this.props.token
             }
             axios.delete(`https://diploma.zharaskhan.com/api/classes/${subjectID}/`);
-            this.props.history.push('/');
+            this.props.history.push('/subjects');
             this.forceUpdate();
         }else{
             //some kind of message

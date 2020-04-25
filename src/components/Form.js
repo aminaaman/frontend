@@ -13,7 +13,7 @@ class CustomForm extends React.Component {
         const description = event.target.elements.description.value;
         axios.defaults.headers = {
             "Content-Type": "application/json",
-            Authorization: this.props.token
+            Authorization: "JWT " + this.props.token
         }
 
         switch ( requestType ) {
