@@ -51,7 +51,7 @@ export const authLogin = (username, password) => {
             localStorage.setItem('token', token);
             localStorage.setItem('expirationDate', expirationDate);
             dispatch(authSuccess(token));
-            dispatch(checkAuthTimeout(3600));
+            dispatch(checkAuthTimeout(3600));  
         })
         .catch(err => {
             dispatch(authFail(err))

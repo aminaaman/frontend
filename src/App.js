@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import Header from './components/Header';
-import Footer from './components/Footer';
-import Profile from './containers/Profile';
-
+import { BrowserRouter as Router } from 'react-router-dom';
+import BaseRouter from './routes';
+import MainLayout from './containers/Layout';
 import 'antd/dist/antd.css';
 import * as actions from './store/actions/auth';
 
@@ -17,13 +16,16 @@ class  App extends Component {
   render() {
     return (
       <div>
-        <Header {...this.props} />
-        <Profile {...this.props} />
-        <Footer/>
+        <Router>
+          <MainLayout {...this.props}>
+            <BaseRouter />
+          </MainLayout>
+        </Router>
       </div>
     );
   }
 }
+
 const mapStateToProps = state => {
   return {
     isAuthenticated: state.token !== null

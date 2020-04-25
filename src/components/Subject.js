@@ -19,7 +19,7 @@ const Subjects = props => {
           key={item.name}
         >
           <List.Item.Meta
-            title={<a href={`/classes/${item.id}`}> {item.name} </a>}
+            title={<a href={`/subjects/${item.id}`}> {item.name} </a>}
             description={item.description}
           />
           {item.content}
