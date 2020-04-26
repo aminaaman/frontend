@@ -17,7 +17,7 @@ const BaseRouter = () => (
         <Route exact path="/logout" component={Home}/>
         <Route exact path='/subjects' component={SubjectList} />
         <Route exact path='/subjects/:subjectID' component={SubjectDetail} />
-        <Route exact path='/homeworks/:hwID' component={HwDetailView} />
+        <Route exact path='/subjects/:subjectID/homeworks/:hwID' component={HwDetailView} />
     </div>
 )
 
