@@ -12,6 +12,7 @@ class SubjectDetail extends React.Component {
         subject: {}
     }
 
+
     componentWillReceiveProps(newProps){
         console.log(newProps);
         if(newProps.token){
@@ -44,7 +45,9 @@ class SubjectDetail extends React.Component {
             //some kind of message
         }
 
-    }
+    } 
+
+
     render() {
         return (
             <div>

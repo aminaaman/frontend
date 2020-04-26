@@ -8,9 +8,10 @@ const FormItem = Form.Item;
 
 class CustomForm extends React.Component {
 
-    handleFormSubmit = (event, requestType, classID) => {
+    handleFormSubmit = (event, requestType, subjectID) => {
         const name = event.target.elements.name.value;
         const description = event.target.elements.description.value;
+
         axios.defaults.headers = {
             "Content-Type": "application/json",
             Authorization: "JWT " + this.props.token
@@ -22,15 +23,24 @@ class CustomForm extends React.Component {
                     name: name,
                     description: description
                 })
-                .then(res => console.log(res))
+                .then(res => {
+                    if (res.status === 201) {
+                        this.props.history.push(`/subjects`);
+                    }
+                })
                 .catch(error => console.err(error));
             case 'put':
-                return axios.put(`https://diploma.zharaskhan.com/api/classes/${classID}/`, {
+                return axios.put(`https://diploma.zharaskhan.com/api/classes/${subjectID}/`, {
                     name: name,
                     description: description
                 })
-                .then(res => console.log(res))
+                .then(res => {
+                    if (res.status === 200) {
+                        this.props.history.push(`/subjects`);
+                    }
+                })
                 .catch(error => console.err(error));
+            default:
         }
     }
 
@@ -43,7 +53,7 @@ class CustomForm extends React.Component {
             <Form onSubmit={(event) => this.handleFormSubmit(
                 event,
                 this.props.requestType,
-                this.props.classID )}>
+                this.props.subjectID )}>
             <FormItem label="Name" >
                 <Input name="name" placeholder="Put a name here" />
             </FormItem>
