@@ -5,12 +5,14 @@ import CustomForm from '../components/Form';
 import { Breadcrumb } from 'antd';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import Hws from '../components/Hw';
 
 class SubjectDetail extends React.Component {
 
     state = {
-        subject: {}
-    }
+        subject: {},
+        homeworks: []
+    };
 
 
     componentWillReceiveProps(newProps){
@@ -25,6 +27,12 @@ class SubjectDetail extends React.Component {
                 .then(res => {
                     this.setState({
                         subject: res.data
+                    });
+                })
+            axios.get(`https://diploma.zharaskhan.com/api/classes/${subjectID}/homeworks/`)
+                .then(res => {
+                    this.setState({
+                        homeworks: res.data
                     });
                 })
         }
@@ -57,6 +65,9 @@ class SubjectDetail extends React.Component {
                  </Breadcrumb>
                 <Card title={this.state.subject.name}>
                     <p>{this.state.subject.description}</p>
+                </Card>
+                <Card title="Homeworks for this class">
+                    <Hws data={this.state.homeworks} /> 
                 </Card>
                 <CustomForm
                     requestType="put"

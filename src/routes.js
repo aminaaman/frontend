@@ -6,6 +6,7 @@ import Home from './containers/Home';
 import About from './containers/About';
 import Blog from './containers/Blog';
 import Login from './containers/Login';
+import HwDetailView from './containers/HwDetailView'
 
 const BaseRouter = () => (
     <div>
@@ -16,6 +17,7 @@ const BaseRouter = () => (
         <Route exact path="/logout" component={Home}/>
         <Route exact path='/subjects' component={SubjectList} />
         <Route exact path='/subjects/:subjectID' component={SubjectDetail} />
+        <Route exact path='/homeworks/:hwID' component={HwDetailView} />
     </div>
 )
 
