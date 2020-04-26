@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-import Hws from '../components/Hw';
+import { Button, Card } from 'antd';
 import { Breadcrumb } from 'antd';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
@@ -19,24 +19,29 @@ class HwDetail extends React.Component {
                 "Content-Type": "application/json",
                 Authorization: "JWT " + newProps.token
             }
-            const subjectID = this.props.match.params.subjectID;
+
             const hwID = this.props.match.params.hwID;
-            axios.get(`https://diploma.zharaskhan.com/api/classes/${subjectID}/`)
+            const subjectID = this.props.match.params.subjectID;
+            
+            axios.get(`https://diploma.zharaskhan.com/api/classes/${subjectID}/homeworks/${hwID}/`)
                 .then(res => {
                     this.setState({
-                        homeworks: res.data
+                        homework: res.data
                     });
                 })
         }
     }
     render() {
         return (
+            console.log(this.state.homework),
             <div>
                 <Breadcrumb style={{ margin: '16px 0' }}>
                     <Breadcrumb.Item><Link to="/subjects">Home</Link></Breadcrumb.Item>
                     <Breadcrumb.Item><Link to ="/subjects">List</Link></Breadcrumb.Item>
                  </Breadcrumb>
-                <Hws data={this.state.homeworks} />
+                 <Card title={this.state.homework.name}>
+                    <p>{this.state.homework.description}</p>
+                </Card>
                 <br />
             </div>
         )
