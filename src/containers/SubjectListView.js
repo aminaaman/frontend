@@ -10,24 +10,24 @@ class SubjectList extends React.Component {
 
     state = {
         subjects: []
-    }
+    };
+
 
     componentWillReceiveProps(newProps){
-        console.log(newProps);
-        if(newProps.token){
-            axios.defaults.headers = {
-                "Content-Type": "application/json",
-                Authorization: "JWT " + newProps.token
-            }
-            axios.get('https://diploma.zharaskhan.com/api/classes/')
-                .then(res => {
-                    this.setState({
-                        subjects: res.data
-                    });
-                })
-        }
-    }
-
+      console.log(newProps);
+      if(newProps.token){
+          axios.defaults.headers = {
+              "Content-Type": "application/json",
+              Authorization: "JWT " + newProps.token
+          }
+          axios.get('https://diploma.zharaskhan.com/api/classes/')
+              .then(res => {
+                  this.setState({
+                      subjects: res.data
+                  });
+              })
+      }
+  }
     render() {
         return (
             <div>
@@ -40,18 +40,18 @@ class SubjectList extends React.Component {
                 <h4>Create a subject</h4>
                 <CustomForm 
                     requestType="post"
-                    classID={null}
+                    subjectID={null}
                     btnText="Create" />
             </div>
         )
     }
 }
 
-const mapStateToProps = state => {
+  const mapStateToProps = state => {
     return {
       token: state.token
     }
-  }
+  } 
   
 
 export default connect (mapStateToProps)(SubjectList);

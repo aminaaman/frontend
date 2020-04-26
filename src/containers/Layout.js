@@ -1,5 +1,5 @@
 import React from 'react';
-import { Layout, Breadcrumb } from 'antd';
+import { Layout } from 'antd';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 const { Content } = Layout;
