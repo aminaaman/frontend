@@ -66,7 +66,7 @@ class SubjectDetail extends React.Component {
                 <Card title={this.state.subject.name}>
                     <p>{this.state.subject.description}</p>
                 </Card>
-                <Card title="Homeworks for this class">
+                <Card style={{backgroundColor:"#F0F8FF"}} title="Homeworks for this class">
                     <Hws data={this.state.homeworks} subjectID={this.props.match.params.subjectID} /> 
                 </Card>
                 <CustomForm

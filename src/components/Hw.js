@@ -1,6 +1,5 @@
 import React from "react";
 import { List } from "antd";
-import { render } from "@testing-library/react";
 
 
 class  Hws extends React.Component {
