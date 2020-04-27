@@ -9,9 +9,8 @@ const FormItem = Form.Item;
 class FormHw extends React.Component {
 
       
-    handleFormSubmit = (event, requestType, hwID) => {
+    handleFormSubmit = (event, requestType, subjectID, hwID) => {
 
-        const subjectID = this.props.match.params.subjectID;
         const name = event.target.elements.name.value;
         const description = event.target.elements.description.value;
         const deadline = event.target.elements.deadline.value;
@@ -23,7 +22,7 @@ class FormHw extends React.Component {
 
         switch ( requestType ) {
             case 'post':
-                return axios.post(`https://diploma.zharaskhan.com/api/classes/${subjectID}/`, {
+                return axios.post(`https://diploma.zharaskhan.com/api/classes/${subjectID}/homeworks/`, {
                     name: name,
                     description: description,
                     deadline: deadline
@@ -59,6 +58,7 @@ class FormHw extends React.Component {
             <Form onSubmit={(event) => this.handleFormSubmit(
                 event,
                 this.props.requestType,
+                this.props.subjectID,
                 this.props.hwID )}>
             <FormItem label="Name" >
                 <Input name="name" placeholder="Put a name here" />
