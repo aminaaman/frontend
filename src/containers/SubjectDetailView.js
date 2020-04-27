@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import { Button, Card } from 'antd';
 import CustomForm from '../components/Form';
+import FormHw from '../components/FormHw';
 import { Breadcrumb } from 'antd';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
@@ -69,6 +70,17 @@ class SubjectDetail extends React.Component {
                 <Card style={{backgroundColor:"#F0F8FF"}} title="Homeworks for this class">
                     <Hws data={this.state.homeworks} subjectID={this.props.match.params.subjectID} /> 
                 </Card>
+                <br />
+                <h4>Create a homework</h4>
+                <br />
+                <FormHw 
+                    requestType="post"
+                    subjectID={this.props.match.params.subjectID}
+                    hwID={null}
+                    btnText="Create" />
+                <br />
+                <h4>Update and delete subject</h4>
+                <br />
                 <CustomForm
                     requestType="put"
                     subjectID={this.props.match.params.subjectID}
