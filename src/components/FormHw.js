@@ -1,5 +1,5 @@
 import React from 'react';
-import { Form, Input, Button, DatePicker } from 'antd';
+import { Form, Input, Button } from 'antd';
 import axios from 'axios';
 import { connect } from "react-redux";
 
@@ -67,7 +67,7 @@ class FormHw extends React.Component {
                 <Input name="description" placeholder="Enter some description ..." />
             </FormItem>
             <FormItem label="Deadline" >
-                <DatePicker name="deadline" selected={this.props.deadline}/>
+                <Input name="deadline" placeholder="2020-04-30" />  
             </FormItem>
             <FormItem>
                 <Button type="primary" htmlType="submit">{this.props.btnText}</Button>

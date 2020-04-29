@@ -76,7 +76,7 @@ class SubjectDetail extends React.Component {
                 <FormHw 
                     requestType="post"
                     subjectID={this.props.match.params.subjectID}
-                    hwID={null}
+                    hwID={this.props.match.params.hwID}
                     btnText="Create" />
                 <br />
                 <h4>Update and delete subject</h4>

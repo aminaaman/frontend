@@ -64,6 +64,7 @@ class HwDetail extends React.Component {
                 </Card>
                 <FormHw
                     requestType="put"
+                    subjectID={this.props.match.params.subjectID}
                     hwID={this.props.match.params.hwID}
                     btnText="Update" />
                 <form onSubmit={this.handleDelete}>
