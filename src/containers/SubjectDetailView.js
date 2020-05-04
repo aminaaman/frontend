@@ -1,5 +1,4 @@
 import React from 'react';
-import axios from 'axios';
 import { Button, Card } from 'antd';
 import CustomForm from '../components/Form';
 import FormHw from '../components/FormHw';
@@ -7,6 +6,8 @@ import { Breadcrumb } from 'antd';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import Hws from '../components/Hw';
+import SubjectService from "../services/subject";
+import HomeworkService from "../services/homework";
 
 class SubjectDetail extends React.Component {
 
@@ -19,21 +20,17 @@ class SubjectDetail extends React.Component {
     componentWillReceiveProps(newProps){
         console.log(newProps);
         if(newProps.token){
-            axios.defaults.headers = {
-                "Content-Type": "application/json",
-                Authorization: "JWT " + newProps.token
-            }
             const subjectID = this.props.match.params.subjectID;
-            axios.get(`https://diploma.zharaskhan.com/api/classes/${subjectID}/`)
+            SubjectService.get(subjectID).then(res => {
+                this.setState({
+                    subject: res
+                });
+            })
+
+            HomeworkService.list(subjectID)
                 .then(res => {
                     this.setState({
-                        subject: res.data
-                    });
-                })
-            axios.get(`https://diploma.zharaskhan.com/api/classes/${subjectID}/homeworks/`)
-                .then(res => {
-                    this.setState({
-                        homeworks: res.data
+                        homeworks: res
                     });
                 })
         }
@@ -43,18 +40,15 @@ class SubjectDetail extends React.Component {
     handleDelete = (event) => {
         if(this.props.token !== null){
             const subjectID = this.props.match.params.subjectID;
-            axios.defaults.headers = {
-                "Content-Type": "application/json",
-                Authorization: "JWT " + this.props.token
-            }
-            axios.delete(`https://diploma.zharaskhan.com/api/classes/${subjectID}/`);
+
+            SubjectService.remove(subjectID);
             this.props.history.push('/subjects');
             this.forceUpdate();
         }else{
             //some kind of message
         }
 
-    } 
+    }
 
 
     render() {
@@ -68,12 +62,12 @@ class SubjectDetail extends React.Component {
                     <p>{this.state.subject.description}</p>
                 </Card>
                 <Card style={{backgroundColor:"#F0F8FF"}} title="Homeworks for this class">
-                    <Hws data={this.state.homeworks} subjectID={this.props.match.params.subjectID} /> 
+                    <Hws data={this.state.homeworks} subjectID={this.props.match.params.subjectID} />
                 </Card>
                 <br />
                 <h4>Create a homework</h4>
                 <br />
-                <FormHw 
+                <FormHw
                     requestType="post"
                     subjectID={this.props.match.params.subjectID}
                     hwID={this.props.match.params.hwID}

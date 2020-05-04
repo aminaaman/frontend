@@ -8,7 +8,7 @@ import Blog from './containers/Blog';
 import Login from './containers/Login';
 import HwDetailView from './containers/HwDetailView'
 
-const BaseRouter = () => (
+const   BaseRouter = () => (
     <div>
         <Route exact path="/" component={Home}/>
         <Route exact path="/about" component={About}/>
