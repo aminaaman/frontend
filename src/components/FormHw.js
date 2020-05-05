@@ -1,48 +1,33 @@
 import React from 'react';
 import { Form, Input, Button } from 'antd';
-import axios from 'axios';
 import { connect } from "react-redux";
+import HomeworkService from "../services/homework";
 
 
 const FormItem = Form.Item;
 
 class FormHw extends React.Component {
 
-      
+
     handleFormSubmit = (event, requestType, subjectID, hwID) => {
 
         const name = event.target.elements.name.value;
         const description = event.target.elements.description.value;
         const deadline = event.target.elements.deadline.value;
 
-        axios.defaults.headers = {
-            "Content-Type": "application/json",
-            Authorization: "JWT " + this.props.token
-        }
 
         switch ( requestType ) {
             case 'post':
-                return axios.post(`https://diploma.zharaskhan.com/api/classes/${subjectID}/homeworks/`, {
-                    name: name,
-                    description: description,
-                    deadline: deadline
-                })
+                HomeworkService.create(subjectID, {name, description, deadline})
                 .then(res => {
-                    if (res.status === 201) {
                         this.props.history.push(`/subjects/${subjectID}`);
-                    }
+
                 })
                 .catch(error => console.err(error));
             case 'put':
-                return axios.put(`https://diploma.zharaskhan.com/api/classes/${subjectID}/homeworks/${hwID}/`, {
-                    name: name,
-                    description: description,
-                    deadline: deadline
-                })
+                HomeworkService.update(subjectID, hwID, {name, description, deadline})
                 .then(res => {
-                    if (res.status === 200) {
-                        this.props.history.push(`/subjects/${subjectID}`);
-                    }
+                    this.props.history.push(`/subjects/${subjectID}`);
                 })
                 .catch(error => console.err(error));
             default:
@@ -50,7 +35,7 @@ class FormHw extends React.Component {
     }
 
     render() {
-        
+
         return (
         <div style={{
 
@@ -67,7 +52,7 @@ class FormHw extends React.Component {
                 <Input name="description" placeholder="Enter some description ..." />
             </FormItem>
             <FormItem label="Deadline" >
-                <Input name="deadline" placeholder="2020-04-30" />  
+                <Input name="deadline" placeholder="2020-04-30" />
             </FormItem>
             <FormItem>
                 <Button type="primary" htmlType="submit">{this.props.btnText}</Button>

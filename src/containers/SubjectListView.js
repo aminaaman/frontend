@@ -1,10 +1,10 @@
 import React from 'react';
-import axios from 'axios';
 import Subjects from '../components/Subject';
 import CustomForm from '../components/Form';
 import { Breadcrumb } from 'antd';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import SubjectService from "../services/subject";
 
 class SubjectList extends React.Component {
 
@@ -16,14 +16,9 @@ class SubjectList extends React.Component {
     componentWillReceiveProps(newProps){
       console.log(newProps);
       if(newProps.token){
-          axios.defaults.headers = {
-              "Content-Type": "application/json",
-              Authorization: "JWT " + newProps.token
-          }
-          axios.get('https://diploma.zharaskhan.com/api/classes/')
-              .then(res => {
+          SubjectService.list().then(res => {
                   this.setState({
-                      subjects: res.data
+                      subjects: res
                   });
               })
       }
@@ -38,7 +33,7 @@ class SubjectList extends React.Component {
                 <Subjects data={this.state.subjects} />
                 <br />
                 <h4>Create a subject</h4>
-                <CustomForm 
+                <CustomForm
                     requestType="post"
                     subjectID={null}
                     btnText="Create" />
@@ -51,7 +46,7 @@ class SubjectList extends React.Component {
     return {
       token: state.token
     }
-  } 
-  
+  }
+
 
 export default connect (mapStateToProps)(SubjectList);

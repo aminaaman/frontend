@@ -1,10 +1,10 @@
 import React from 'react';
-import axios from 'axios';
 import { Button, Card } from 'antd';
 import { Breadcrumb } from 'antd';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import FormHw from '../components/FormHw';
+import HomeworkService from "../services/homework";
 
 class HwDetail extends React.Component {
 
@@ -16,18 +16,15 @@ class HwDetail extends React.Component {
     componentWillReceiveProps(newProps){
         console.log(newProps);
         if(newProps.token){
-            axios.defaults.headers = {
-                "Content-Type": "application/json",
-                Authorization: "JWT " + newProps.token
-            }
+
 
             const hwID = this.props.match.params.hwID;
             const subjectID = this.props.match.params.subjectID;
-            
-            axios.get(`https://diploma.zharaskhan.com/api/classes/${subjectID}/homeworks/${hwID}/`)
+
+            HomeworkService.get(subjectID, hwID)
                 .then(res => {
                     this.setState({
-                        homework: res.data
+                        homework: res
                     });
                 })
         }
@@ -36,18 +33,15 @@ class HwDetail extends React.Component {
         if(this.props.token !== null){
             const hwID = this.props.match.params.hwID;
             const subjectID = this.props.match.params.subjectID;
-            axios.defaults.headers = {
-                "Content-Type": "application/json",
-                Authorization: "JWT " + this.props.token
-            }
-            axios.delete(`https://diploma.zharaskhan.com/api/classes/${subjectID}/homeworks/${hwID}/`);
+
+            HomeworkService.remove(subjectID, hwID)
             this.props.history.push(`/subjects/${subjectID}`);
             this.forceUpdate();
         }else{
             //some kind of message
         }
 
-    } 
+    }
     render() {
         return (
             console.log(this.state.homework),
@@ -80,7 +74,7 @@ class HwDetail extends React.Component {
     return {
       token: state.token
     }
-  } 
-  
+  }
+
 
 export default connect (mapStateToProps)(HwDetail);
