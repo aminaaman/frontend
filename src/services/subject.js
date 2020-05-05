@@ -46,8 +46,19 @@ function update(id, {name, description}) {
     });
 }
 
+function register_for_class({subject_id, access_code}) {
+    return request({
+        url:    '/register_for_class/',
+        method: 'POST',
+        data:   {
+            "subject_id": subject_id,
+            "access_code": access_code,
+        }
+    });
+}
+
 const SubjectService = {
-    list, create, get, remove, update//, update, delete, etc. ...
+    list, create, get, remove, update, register_for_class//, update, delete, etc. ...
 }
 
 export default SubjectService;
