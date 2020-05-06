@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import FormHw from '../components/FormHw';
 import HomeworkService from "../services/homework";
+import SimpleReactFileUpload from "../containers/TestUpload";
 
 class HwDetail extends React.Component {
 
@@ -64,6 +65,10 @@ class HwDetail extends React.Component {
                 <form onSubmit={this.handleDelete}>
                     <Button type="danger" htmlType="submit">Delete</Button>
                 </form>
+                <br />
+                <Card>
+                    <SimpleReactFileUpload />
+                </Card>
                 <br />
             </div>
         )
