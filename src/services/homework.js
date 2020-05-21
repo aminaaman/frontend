@@ -37,6 +37,16 @@ function create(subjectId, {name, description, deadline}) {
 }
 
 
+function check(id) {
+    return request({
+        url:    `/check/${id}/`,
+        method: 'GET',
+    });
+}
+
+
+
+
 function update(subjectId, id, {name, description, deadline}) {
     return request({
         url:    `/classes/${subjectId}/homeworks/${id}/`,
@@ -49,7 +59,7 @@ function update(subjectId, id, {name, description, deadline}) {
     });
 }
 const HomeworkService = {
-    list, create, get, remove, update//, update, delete, etc. ...
+    list, create, get, remove, update, check//, update, delete, etc. ...
 }
 
 export default HomeworkService;

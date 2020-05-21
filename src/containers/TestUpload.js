@@ -29,7 +29,7 @@ class SimpleReactFileUpload extends React.Component {
         const formData = new FormData();
         formData.append('file',file)
 
-        return SubmissionService.submit(24, 22, formData)
+        return SubmissionService.submit(this.props.subjectId, this.props.homeworkId, formData)
     }
 
     render() {
