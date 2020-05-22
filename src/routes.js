@@ -7,6 +7,7 @@ import About from './containers/About';
 import Blog from './containers/Blog';
 import Login from './containers/Login';
 import HwDetailView from './containers/HwDetailView'
+import Register from "./containers/Register";
 
 const   BaseRouter = () => (
     <div>
@@ -14,6 +15,7 @@ const   BaseRouter = () => (
         <Route exact path="/about" component={About}/>
         <Route exact path="/blog" component={Blog}/>
         <Route exact path="/login" component={Login}/>
+         <Route exact path="/register" component={Register}/>
         <Route exact path="/logout" component={Home}/>
         <Route exact path='/subjects' component={SubjectList} />
         <Route exact path='/subjects/:subjectID' component={SubjectDetail} />

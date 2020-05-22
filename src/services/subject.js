@@ -46,7 +46,7 @@ function update(id, {name, description}) {
     });
 }
 
-function register_for_class({subject_id, access_code}) {
+function register_for_class(subject_id, access_code) {
     return request({
         url:    '/register_for_class/',
         method: 'POST',

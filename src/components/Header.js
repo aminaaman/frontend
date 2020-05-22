@@ -25,26 +25,27 @@ class Header extends Component {
                     <Navbar.Collapse id="responsive-navbar-nav">
                         <Nav className="mr-auto">
                             <Nav.Link href="/">Home</Nav.Link>
-                            <Nav.Link href="/about">About us</Nav.Link>
+                            <Nav.Link href="/subjects">My classes</Nav.Link>
                             <Nav.Link href="/blog">Blog</Nav.Link>
+                            <Nav.Link href="/register">Register</Nav.Link>
                         </Nav>
 
                         {
                             this.props.isAuthenticated ?
 
                             <Nav className="mr-lg-2" onClick={this.props.logout}>
-                                <Nav.Link>Logout</Nav.Link> 
-                            </Nav> 
+                                <Nav.Link>Logout</Nav.Link>
+                            </Nav>
 
-                        
+
                             :
 
                             <Nav className="mr-lg-2">
                                 <Nav.Link href="/login">Login</Nav.Link>
-                            </Nav>   
+                            </Nav>
 
                         }
-                   
+
 
                     </Navbar.Collapse>
 
@@ -61,5 +62,5 @@ const mapDispatchToProps = dispatch => {
     };
 };
 
-  
+
   export default connect(null, mapDispatchToProps)(Header);
